@@ -18,5 +18,6 @@
   "bugs": {
     "url": "https://github.com/codingwithjen/broken-node-express-app/issues"
   },
-  "homepage": "https://github.com/codingwithjen/broken-node-express-app#readme"
+  "homepage": "https://github.com/codingwithjen/broken-node-express-app#readme",
+  "devDependencies": {}
 }

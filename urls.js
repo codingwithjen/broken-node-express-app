@@ -1,6 +1,5 @@
 const fs = require('fs');
 const axios = require('axios');
-const process = require('process ');
 
 const fileName = process.argv[2];
 

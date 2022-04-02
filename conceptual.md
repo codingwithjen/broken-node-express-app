@@ -9,16 +9,16 @@ Answer the following questions below:
   - Async/Await
 
 - What is a Promise?
-  - A Promise is a value that will be returned at some point in the future.
+  - A Promise is a value that will be returned at some point in the future. Promises simplify deferred and asynchronous computations. A Promise represents an operation that hasn't completed yet.
 
 - What are the differences between an async function and a regular function?
   - An async function will execute code asynchronously and return a Promise (without *await* keyword), which will pause the run of the code and wait for the Promise to return a *real* value. A regular function executes its code sequentially.
 
 - What is the difference between Node.js and Express.js?
-  - Express.js is a framework based on Node.js for which is used for building web-applications using approaches and principles of Node.js. In the last few units, we worked with Python and Flask. Think of Express.js as Flask, as Flask is to Python.
+  - Express.js is a framework based on Node.js for which it is used for building web-applications using approaches and principles of Node.js. In the last few units, we worked with Python and Flask. Think of Express.js as Flask, as Flask is to Python.
 
 - What is the error-first callback pattern?
-  - Error-first callback is to pass error and data to a function. The error is always the first argument of the function.
+  - Error-first callback is to pass an error and data to a function. The error is always the first argument of the function.
 
 - What is middleware?
   - Middleware is the code that runs between the request and response cycle. It acts like the connective tissue between applications, data, and users.
@@ -37,4 +37,4 @@ async function getUsers() {
   return [elie, matt, joel];
 }
 ```
-  - First glance, it looks like the function is not reusable, due to the callbacks not being handled with a loop. Second, Promise.all is not being used to resolve every promise, if there was an array to be solved. Third, this will slow down the application because every request would need to wait for the previous request to complete first. And lastly, error handling should be used tpo refactor to handle simultaneous requests and catch errors. 
+  - First glance, it looks like the function is not reusable, due to the callbacks not being handled with a loop. Second, *Promise.all* is not being used to resolve every promise, if there was an array to be solved. Third, this will slow down the application because every request would need to wait for the previous request to complete first. And lastly, error handling should be used to refactor to handle simultaneous requests and catch errors. 

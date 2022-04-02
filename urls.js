@@ -6,51 +6,54 @@ const fileName = process.argv[2];
 const read = (fileName) => {
     fs.readFile(fileName, "utf8", function (err, data) {
       if (err) {
-        // Handle Error
+        // handle possible error
         console.error(err);
-        // Kill the Process
+        // kill the process and tell the shell it errored
         process.exit(1);
       }
-      // Otherwise, success
+      // otherwise, success...
       const urls = getUrls(data);
       console.log(urls);
       for (let url of urls) {
-        sendRequest(url);
+        sendRequest(url);  
       }
     });
   };
-  
-  const getUrls = (data) => {
+
+  const getUrls = (data) => {  
     let dataArr = data.split("\n");
     return dataArr.slice(0, 4);
   };
-  
-  function sendRequest(url) {
+
+  function sendRequest(url) {  
     axios
       .get(url)
       .then(function (response) {
-        // Handle Success
+        // handle success
         let fileName = getFileName(url);
         makeFile(fileName, response);
       })
       .catch(function (error) {
-        // Handle Error
-        console.log("Coulnd't access URL: ", error);
+        // handle possible error
+        console.log("Could not download:", error);
       });
   }
-  
-  const getFileName = (url) => {
+
+  const getFileName = (url) => {  
     return url.split("/")[2];
   };
-  
+
   const makeFile = (fileName, response) => {
     fs.writeFile(fileName, response.data, "utf8", function (err) {
       if (err) {
+        // handle possible error
         console.error(err);
+        // kill the process and tell the shell it errored
         process.exit(1);
       }
-      console.log("Successfully wrote to file!");
+      console.log("Wrote to");
     });
   };
-  
+
   read(fileName);
+

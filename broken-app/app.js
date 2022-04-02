@@ -8,30 +8,30 @@ app.use(express.json());
 app.post('/', async function (req, res, next) {
   try {
     if (!req.body.developers){
-      throw new ExpressError('developers is required' , 400);
+      throw new ExpressError('User information required.' , 400);
     }
 
-    const resps = req.body.developers.map(async d => {
+    const response = req.body.developers.map(async d => {
       if (d.trim() === "") {
         return null;
       }
 
       try {
         return await axios.get(`https://api.github.com/users/${d}`);
-      } catch (error) {
-        if (error.response.status === 404){
-          throw new ExpressError(`Can not find ${d}` , 404);
+      } catch (err) {
+        if (err.response.status === 404){
+          throw new ExpressError(`${d} not found.` , 404);
         }
-        throw new ExpressError(`Error when getting data of ${d}`, 500);
+        throw new ExpressError(`Error retrieving info on: ${d}`, 500);
       }
     });
 
-    const results = await Promise.all(resps); //wait for all promise to solve
+    const results = await Promise.all(response);
     const developers = results.map(r => (r ? { name: r.data.name, bio: r.data.bio } : {}));
 
     return res.json(developers);
-  } catch (error) {
-    next(error);
+  } catch (err) {
+    next(err);
   }
 });
 
@@ -53,7 +53,7 @@ app.use(function (err, req, res, next) {
       error: { message, status }
   });
 });
-
-
-
-app.listen(3000);
+// end generic handler
+app.listen(3000, function () {
+  console.log('Server is listening on port 3000');
+});

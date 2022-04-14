@@ -38,7 +38,8 @@ async function getUsers() {
 }
 ```
   - First glance, it looks like the function is not reusable, due to the callbacks not being handled with a loop. Second, *Promise.all* is not being used to resolve every promise, if there was an array to be solved. Third, this will slow down the application because every request would need to wait for the previous request to complete first. And lastly, error handling should be used to refactor to handle simultaneous requests and catch errors.
-  `
+
+`
   let users = ['elie', 'joel', 'matt']
   let promiseArr =[];
 
@@ -54,4 +55,4 @@ async function getUsers() {
   }
   getPromises(users);
   resolve(promiseArr);
-  `
+`

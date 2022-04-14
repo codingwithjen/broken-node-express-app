@@ -1,6 +1,5 @@
 # Broken App Issues
 - Changed 'let' and 'var' to const
-- Installed Axios and Express
 - Not converting to incoming requests as JSON
     - `app.use(express.json());` line 6
 - Created own error handling with *expressError.js*
